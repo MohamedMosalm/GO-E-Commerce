@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Password Reset</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .header {
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+      }
+      .content {
+        margin: 20px;
+      }
+      .footer {
+        background-color: #f8f9fa;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Password Reset URL</h1>
+    </div>
+    <div class="content">
+      <p>Hello</p>
+      <p>
+        Forgot your password? Submit a PATCH request with your new password to:
+        {{.ResetURL}}.
+      </p>
+      <p>If you didn't forget your password, please ignore this email!</p>
+      <p>If you have any questions, feel free to contact us.</p>
+    </div>
+    <div class="footer">
+      <p>&copy; 2024 Our Service. All rights reserved.</p>
+    </div>
+  </body>
+</html>

@@ -11,4 +11,10 @@ type UserRepository interface {
 	UpdateUser(id uint, updates *models.User) (*models.User, error)
 	DeleteUser(id uint) error
 	GetUserByEmail(email string) (*models.User, error)
+	SaveIntoDB(user *models.User) error
+}
+
+type PasswordResetTokenRepository interface {
+	CreatePasswordResetToken(resetToken *models.PasswordResetToken) error
+	FindResetToken(token string) (*models.PasswordResetToken, error)
 }

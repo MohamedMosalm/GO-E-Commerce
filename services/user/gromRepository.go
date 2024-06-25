@@ -44,21 +44,20 @@ func (r *GromUserRepository) UpdateUser(id uint, updates *models.User) (*models.
 	if err != nil {
 		return nil, err
 	}
-	if updates.Email == "" {
-		updates.Email = user.Email
+	if updates.FirstName != "" {
+		user.FirstName = updates.FirstName
 	}
-	if updates.FirstName == "" {
-		updates.FirstName = user.FirstName
+	if updates.LastName != "" {
+		user.LastName = updates.LastName
 	}
-	if updates.LastName == "" {
-		updates.LastName = user.LastName
-	}
-	updates.HashedPassword = user.HashedPassword
 	err = r.db.Save(user).Error
-
 	return user, err
 }
 
 func (r *GromUserRepository) DeleteUser(id uint) error {
 	return r.db.Delete(&models.User{}, id).Error
+}
+
+func (r *GromUserRepository) SaveIntoDB(user *models.User) error {
+	return r.db.Save(user).Error
 }

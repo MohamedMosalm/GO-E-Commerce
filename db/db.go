@@ -21,7 +21,7 @@ func InitDB(dsn string) *gorm.DB {
 }
 
 func Migrate(db *gorm.DB) {
-	if err := db.AutoMigrate(&models.User{}, &models.Product{}, &models.Review{}, &models.Category{}, &models.Order{}); err != nil {
+	if err := db.AutoMigrate(&models.User{}, &models.Product{}, &models.Review{}, &models.Category{}, &models.Order{}, &models.PasswordResetToken{}); err != nil {
 		panic(err)
 	}
 }
