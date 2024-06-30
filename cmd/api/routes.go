@@ -4,6 +4,8 @@ import (
 	"net/http"
 
 	"github.com/MohamedMosalm/GO-E-Commerce/services/auth"
+	"github.com/MohamedMosalm/GO-E-Commerce/services/category"
+	"github.com/MohamedMosalm/GO-E-Commerce/services/product"
 	"github.com/MohamedMosalm/GO-E-Commerce/services/user"
 	"github.com/gorilla/mux"
 )
@@ -23,4 +25,24 @@ func RegisterUsersRoutes(r *APIServer, apiRouter *mux.Router) {
 	apiRouter.HandleFunc("/users/{ID}", userHandler.HandleGetUser).Methods(http.MethodGet)
 	apiRouter.HandleFunc("/users/{ID}", userHandler.HandleDeleteUser).Methods(http.MethodDelete)
 	apiRouter.HandleFunc("/users/{ID}", userHandler.HandleUpdateUser).Methods(http.MethodPatch)
+}
+
+func RegisterProductsRoutes(r *APIServer, apiRouter *mux.Router) {
+	productRepo := product.NewGromProductRepository(r.db)
+	productHandler := product.NewHandler(productRepo)
+	apiRouter.HandleFunc("/products", productHandler.HandleGetProducts).Methods(http.MethodGet)
+	apiRouter.HandleFunc("/products", productHandler.HandleCreateProduct).Methods(http.MethodPost)
+	apiRouter.HandleFunc("/products/{ID}", productHandler.HandleGetProduct).Methods(http.MethodGet)
+	apiRouter.HandleFunc("/products/{ID}", productHandler.HandleDeleteProduct).Methods(http.MethodDelete)
+	apiRouter.HandleFunc("/products/{ID}", productHandler.HandleUpdateProduct).Methods(http.MethodPatch)
+}
+
+func RegisterCategoriesRoutes(r *APIServer, apiRouter *mux.Router) {
+	categoryRepo := category.NewGromCategoryRepository(r.db)
+	categoryHandler := category.NewHandler(categoryRepo)
+	apiRouter.HandleFunc("/categories", categoryHandler.HandleGetcategories).Methods(http.MethodGet)
+	apiRouter.HandleFunc("/categories", categoryHandler.HandleCreateCategory).Methods(http.MethodPost)
+	apiRouter.HandleFunc("/categories/{ID}", categoryHandler.HandleGetCategory).Methods(http.MethodGet)
+	apiRouter.HandleFunc("/categories/{ID}", categoryHandler.HandleDeleteCategory).Methods(http.MethodDelete)
+	apiRouter.HandleFunc("/categories/{ID}", categoryHandler.HandleUpdateCategory).Methods(http.MethodPatch)
 }

@@ -29,6 +29,8 @@ func (r *APIServer) Run() error {
 	apiRouter.Use(loggingMiddleware)
 
 	RegisterUsersRoutes(r, apiRouter)
+	RegisterProductsRoutes(r, apiRouter)
+	RegisterCategoriesRoutes(r, apiRouter)
 
 	router.Use(mux.CORSMethodMiddleware(router))
 
